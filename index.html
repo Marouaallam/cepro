@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CEPRO Immobilier — Demande d'information</title>
+  <meta name="description" content="Découvrez la Résidence Prestige et la Résidence Signature de CEPRO Immobilier à Alger et faites le premier pas vers votre futur appartement.">
+  <meta name="theme-color" content="#f3f1ed">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Open Graph (shared links / Meta Ads previews). Replace og:url with the final HTTPS URL once hosted. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CEPRO Immobilier — Votre futur appartement commence ici.">
+  <meta property="og:description" content="Résidence Prestige (Birkhadem) et Résidence Signature (Chéraga).">
+  <meta property="og:image" content="assets/residence-prestige.jpg">
+
+  <link rel="icon" type="image/png" href="assets/cepro-logo.png">
+
+  <!-- Fonts: Jost (Latin, geometric — echoes the CEPRO wordmark) + Cairo (Arabic).
+       If Google Fonts is unreachable, system fonts are used automatically. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!--
+    ===================== META PIXEL =====================
+    The Meta Pixel is NOT hard-coded here. It is loaded by script.js only when
+    CONFIG.META_PIXEL_ID is set to your real Pixel ID (see the top of script.js).
+    - PageView fires on page load.
+    - Lead fires ONLY after the backend confirms the submission (HTTP 2xx).
+    Optional <noscript> fallback (uncomment and replace YOUR_PIXEL_ID):
+    <noscript><img height="1" width="1" style="display:none" alt=""
+      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"></noscript>
+    ======================================================
+  -->
+</head>
+<body>
+  <div class="page">
+    <main class="shell" id="main">
+
+      <!-- ============ HEADER ============ -->
+      <header class="masthead">
+        <img class="masthead__logo" src="assets/cepro-logo.png" width="205" height="216" alt="CEPRO Immobilier">
+
+        <div class="lang-switch" role="group" aria-label="Langue / اللغة">
+          <button type="button" class="lang-switch__btn is-active" data-lang="fr" aria-pressed="true" lang="fr">FR</button>
+          <button type="button" class="lang-switch__btn" data-lang="ar" aria-pressed="false" lang="ar">AR</button>
+        </div>
+      </header>
+
+      <section class="intro">
+        <p class="eyebrow" data-i18n="eyebrow">Programmes résidentiels · Alger</p>
+        <h1 class="intro__title" data-i18n="title">Votre futur appartement commence ici.</h1>
+        <p class="intro__text" data-i18n="description">Découvrez nos résidences et faites le premier pas vers votre futur logement.</p>
+      </section>
+
+      <!-- ============ FORM CARD ============ -->
+      <div class="card" id="formCard">
+
+        <!-- Progress -->
+        <div class="progress" id="progress">
+          <p class="progress__label">
+            <span><span data-i18n="step">Étape</span> <bdi id="stepNumber">1</bdi> <span data-i18n="of">sur</span> <bdi>3</bdi></span>
+            <span class="progress__name" id="stepName">Choisissez votre résidence</span>
+          </p>
+          <div class="progress__track" id="progressBar" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-labelledby="stepName">
+            <span class="progress__fill" id="progressFill"></span>
+          </div>
+        </div>
+
+        <form id="leadForm" class="lead-form" novalidate>
+
+          <!-- ============ STEP 1 — RESIDENCE ============ -->
+          <section class="step" data-step="1" aria-labelledby="step1Title">
+            <h2 class="step__title" id="step1Title" tabindex="-1">
+              <span class="step__index" aria-hidden="true">01</span>
+              <span data-i18n="step1Title">Choisissez votre résidence</span>
+            </h2>
+
+            <fieldset class="group" id="group-residence" aria-describedby="error-residence">
+              <legend class="step__question" data-i18n="step1Question">Quelle résidence souhaitez-vous découvrir ?</legend>
+
+              <div class="residence-grid">
+                <label class="residence-card">
+                  <input class="choice-input" type="radio" name="residence" value="prestige" required>
+                  <span class="residence-card__media">
+                    <img src="assets/residence-prestige-sm.jpg"
+                         srcset="assets/residence-prestige-sm.jpg 720w, assets/residence-prestige.jpg 1400w"
+                         sizes="(min-width: 700px) 420px, 100vw"
+                         width="720" height="720" alt="Façade de la Résidence Prestige"
+                         data-i18n-alt="prestigeAlt" class="img-prestige">
+                  </span>
+                  <span class="residence-card__body">
+                    <span class="residence-card__name" data-i18n="prestigeName">Résidence Prestige</span>
+                    <span class="residence-card__loc">
+                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                      <span data-i18n="prestigeLocation">Birkhadem – Les Sources</span>
+                    </span>
+                  </span>
+                  <span class="choice-check" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+                  </span>
+                </label>
+
+                <label class="residence-card">
+                  <input class="choice-input" type="radio" name="residence" value="signature" required>
+                  <span class="residence-card__media">
+                    <img src="assets/residence-signature-sm.jpg"
+                         srcset="assets/residence-signature-sm.jpg 720w, assets/residence-signature.jpg 1400w"
+                         sizes="(min-width: 700px) 420px, 100vw"
+                         width="720" height="402" alt="Façade de la Résidence Signature"
+                         data-i18n-alt="signatureAlt" class="img-signature">
+                  </span>
+                  <span class="residence-card__body">
+                    <span class="residence-card__name" data-i18n="signatureName">Résidence Signature</span>
+                    <span class="residence-card__loc">
+                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                      <span data-i18n="signatureLocation">Chéraga – Alger</span>
+                    </span>
+                  </span>
+                  <span class="choice-check" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+                  </span>
+                </label>
+              </div>
+
+              <!-- Filled dynamically with the apartment types of the selected residence -->
+              <div class="availability" id="availability" aria-live="polite" hidden></div>
+
+              <p class="field-error" id="error-residence" data-error-for="residence" hidden></p>
+            </fieldset>
+          </section>
+
+          <!-- ============ STEP 2 — APARTMENT ============ -->
+          <section class="step" data-step="2" aria-labelledby="step2Title" hidden>
+            <h2 class="step__title" id="step2Title" tabindex="-1">
+              <span class="step__index" aria-hidden="true">02</span>
+              <span data-i18n="step2Title">Votre appartement idéal</span>
+            </h2>
+
+            <div class="step2-layout">
+              <aside class="selection" aria-labelledby="selectionLabel">
+                <p class="selection__label" id="selectionLabel" data-i18n="yourSelection">Votre sélection</p>
+                <div class="selection__card">
+                  <img class="selection__thumb" id="selectionThumb" src="assets/residence-prestige-sm.jpg" width="96" height="96" alt="">
+                  <div class="selection__text">
+                    <p class="selection__name" id="selectionName">Résidence Prestige</p>
+                    <p class="selection__loc" id="selectionLocation">Birkhadem – Les Sources</p>
+                  </div>
+                </div>
+                <button type="button" class="link-btn" id="changeResidence" data-i18n="change">Modifier</button>
+              </aside>
+
+              <fieldset class="group" id="group-apartment_type" aria-describedby="error-apartment_type">
+                <legend class="step__question" data-i18n="step2Question">Quel type d'appartement recherchez-vous ?</legend>
+                <!-- Radio cards injected by script.js according to the selected residence -->
+                <div class="option-grid" id="apartmentOptions"></div>
+                <p class="field-error" id="error-apartment_type" data-error-for="apartment_type" hidden></p>
+              </fieldset>
+            </div>
+          </section>
+
+          <!-- ============ STEP 3 — CONTACT DETAILS ============ -->
+          <section class="step" data-step="3" aria-labelledby="step3Title" hidden>
+            <h2 class="step__title" id="step3Title" tabindex="-1">
+              <span class="step__index" aria-hidden="true">03</span>
+              <span data-i18n="step3Title">Vos coordonnées</span>
+            </h2>
+            <p class="step__note" data-i18n="allRequired">Tous les champs sont obligatoires.</p>
+
+            <div class="field-grid">
+              <div class="field" id="group-last_name">
+                <label class="field__label" for="last_name" data-i18n="lastName">Nom</label>
+                <input class="field__input" type="text" id="last_name" name="last_name"
+                       autocomplete="family-name" maxlength="60" required
+                       placeholder="Entrez votre nom" data-i18n-placeholder="lastNamePh"
+                       aria-describedby="error-last_name">
+                <p class="field-error" id="error-last_name" data-error-for="last_name" hidden></p>
+              </div>
+
+              <div class="field" id="group-first_name">
+                <label class="field__label" for="first_name" data-i18n="firstName">Prénom</label>
+                <input class="field__input" type="text" id="first_name" name="first_name"
+                       autocomplete="given-name" maxlength="60" required
+                       placeholder="Entrez votre prénom" data-i18n-placeholder="firstNamePh"
+                       aria-describedby="error-first_name">
+                <p class="field-error" id="error-first_name" data-error-for="first_name" hidden></p>
+              </div>
+
+              <div class="field field--full" id="group-phone">
+                <label class="field__label" for="phone" data-i18n="phone">Numéro de téléphone</label>
+                <div class="phone-input">
+                  <svg class="icon phone-input__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h3.5l1.5 4-2 1.5a11 11 0 0 0 6.5 6.5L16 14l4 1.5V19a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"/></svg>
+                  <input class="field__input" type="tel" id="phone" name="phone" dir="ltr"
+                         inputmode="tel" autocomplete="tel" maxlength="20" required
+                         placeholder="05XX XX XX XX" data-i18n-placeholder="phonePh"
+                         aria-describedby="hint-phone error-phone">
+                </div>
+                <p class="field__hint" id="hint-phone" data-i18n="phoneHint">Mobile algérien : 05, 06, 07 ou +213</p>
+                <p class="field-error" id="error-phone" data-error-for="phone" hidden></p>
+              </div>
+            </div>
+
+            <fieldset class="group" id="group-contact_time" aria-describedby="error-contact_time">
+              <legend class="field__label field__label--legend" data-i18n="contactTime">Heure idéale pour être contacté(e)</legend>
+              <div class="time-grid">
+                <label class="time-card">
+                  <input class="choice-input" type="radio" name="contact_time" value="morning" required>
+                  <span class="time-card__name" data-i18n="morning">Matin</span>
+                  <bdi class="time-card__hours" data-i18n="morningHours">09h – 12h</bdi>
+                  <span class="choice-check choice-check--sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                </label>
+                <label class="time-card">
+                  <input class="choice-input" type="radio" name="contact_time" value="afternoon" required>
+                  <span class="time-card__name" data-i18n="afternoon">Après-midi</span>
+                  <bdi class="time-card__hours" data-i18n="afternoonHours">12h – 16h</bdi>
+                  <span class="choice-check choice-check--sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                </label>
+                <label class="time-card">
+                  <input class="choice-input" type="radio" name="contact_time" value="evening" required>
+                  <span class="time-card__name" data-i18n="evening">Fin de journée</span>
+                  <bdi class="time-card__hours" data-i18n="eveningHours">16h – 18h</bdi>
+                  <span class="choice-check choice-check--sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                </label>
+              </div>
+              <p class="field-error" id="error-contact_time" data-error-for="contact_time" hidden></p>
+            </fieldset>
+
+            <div class="privacy">
+              <p class="privacy__notice">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3 8.5 7 10 4-1.5 7-5.5 7-10V6l-7-3Z"/></svg>
+                <span data-i18n="privacyNotice">Vos informations personnelles seront utilisées uniquement pour traiter votre demande et vous contacter concernant votre projet immobilier.</span>
+              </p>
+
+              <div class="consent" id="group-consent">
+                <label class="consent__label">
+                  <input class="consent__input" type="checkbox" id="consent" name="consent" required aria-describedby="error-consent">
+                  <span class="consent__box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                  <span data-i18n="consent">J'accepte d'être contacté(e) par CEPRO Immobilier concernant ma demande.</span>
+                </label>
+                <p class="field-error" id="error-consent" data-error-for="consent" hidden></p>
+              </div>
+
+              <!-- Privacy policy link: stays hidden until CONFIG.PRIVACY_POLICY_URL
+                   is set to CEPRO's real policy URL in script.js (no invented URL). -->
+              <a class="privacy__link" id="privacyLink" href="#" target="_blank" rel="noopener" hidden data-i18n="privacyLink">Politique de confidentialité</a>
+            </div>
+          </section>
+
+          <!-- Form-level alert (configuration / network / server errors) -->
+          <div class="form-alert" id="formAlert" role="alert" hidden></div>
+
+          <!-- ============ NAVIGATION ============ -->
+          <div class="form-nav">
+            <button type="button" class="btn btn--ghost" id="btnBack" hidden>
+              <svg class="icon icon--dir" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+              <span data-i18n="back">Retour</span>
+            </button>
+            <button type="button" class="btn btn--primary" id="btnNext">
+              <span data-i18n="next">Continuer</span>
+              <svg class="icon icon--dir" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+            <button type="submit" class="btn btn--primary" id="btnSubmit" hidden>
+              <span class="btn__spinner" aria-hidden="true"></span>
+              <span class="btn__label" data-i18n="submit">Envoyer ma demande</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- ============ SUCCESS SCREEN (shown only after a 2xx backend response) ============ -->
+        <section class="success" id="successScreen" hidden aria-labelledby="successTitle">
+          <div class="success__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22"/><path d="m15 24.5 6 6 12-13"/></svg>
+          </div>
+          <h2 class="success__title" id="successTitle" tabindex="-1" data-i18n="successTitle">Merci pour votre confiance !</h2>
+          <p class="success__text" data-i18n="successText">Votre demande a bien été envoyée. Notre équipe CEPRO vous contactera prochainement.</p>
+
+          <dl class="recap">
+            <div class="recap__row"><dt data-i18n="recapResidence">Résidence</dt><dd id="recapResidence"></dd></div>
+            <div class="recap__row"><dt data-i18n="recapApartment">Appartement</dt><dd id="recapApartment"></dd></div>
+            <div class="recap__row"><dt data-i18n="recapTime">Créneau</dt><dd id="recapTime"></dd></div>
+          </dl>
+
+          <img class="success__logo" src="assets/cepro-logo.png" width="205" height="216" alt="CEPRO Immobilier">
+        </section>
+      </div>
+
+      <footer class="footer">
+        <p><bdi dir="ltr">© <span id="year">2026</span> CEPRO Immobilier.</bdi> <span data-i18n="rights">Tous droits réservés.</span></p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
