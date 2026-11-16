@@ -7,8 +7,7 @@
 
   var LABELS = {
     residence: { prestige: 'Prestige', signature: 'Signature' },
-    time: { morning: 'Matin (09–12h)', afternoon: 'Après-midi (12–16h)', evening: 'Fin de journée (16–18h)' },
-    lang: { fr: 'FR', ar: 'AR' }
+    time: { morning: 'Matin (9h–12h)', afternoon: 'Après-midi (12h–16h)', evening: 'Fin de journée (16h–18h)' }
   };
 
   var $ = function (id) { return document.getElementById(id); };
@@ -62,15 +61,6 @@
     try { return dateFmt.format(new Date(iso)); } catch (e) { return iso || ''; }
   }
 
-  function sourceOf(tracking) {
-    tracking = tracking || {};
-    var parts = [];
-    if (tracking.utm_source) parts.push(tracking.utm_source);
-    else if (tracking.fbclid) parts.push('facebook');
-    if (tracking.utm_campaign) parts.push(tracking.utm_campaign);
-    return parts.join(' · ');
-  }
-
   function filterParams() {
     var params = new URLSearchParams();
     new FormData(filtersForm).forEach(function (value, key) {
@@ -103,15 +93,8 @@
       a.textContent = formatPhone(r.phone);
       cell(tr, 'Téléphone', a, 'nowrap');
 
-      var tag = document.createElement('span');
-      tag.className = 'tag';
-      tag.textContent = LABELS.residence[r.residence] || r.residence;
-      cell(tr, 'Résidence', tag);
-
-      cell(tr, 'Appart.', r.apartment_type, 'nowrap');
-      cell(tr, 'Créneau', LABELS.time[r.preferred_contact_time] || r.preferred_contact_time);
-      cell(tr, 'Langue', LABELS.lang[r.language] || r.language);
-      cell(tr, 'Source', sourceOf(r.tracking) || '—');
+      cell(tr, 'Logement', (LABELS.residence[r.residence] || r.residence) + ' · ' + r.apartment_type, 'nowrap');
+      cell(tr, 'À appeler', LABELS.time[r.preferred_contact_time] || r.preferred_contact_time, 'muted');
       tbody.appendChild(tr);
     });
     $('empty').hidden = rows.length > 0;
@@ -127,11 +110,8 @@
   /* ---------- data ---------- */
   function loadStats() {
     return api('stats').then(function (s) {
-      $('statTotal').textContent = s.total;
-      $('statToday').textContent = s.today;
-      $('statWeek').textContent = s.week;
-      $('statPrestige').textContent = s.prestige;
-      $('statSignature').textContent = s.signature;
+      $('summary').textContent = s.total + ' demande' + (s.total > 1 ? 's' : '') +
+        ' · ' + s.today + " aujourd'hui · " + s.week + ' cette semaine';
     }).catch(showDashError);
   }
 
@@ -222,7 +202,10 @@
       .then(function () { show('loginView'); });
   });
 
-  $('refreshBtn').addEventListener('click', refresh);
+  // Refresh automatically when the team comes back to the tab.
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible' && !$('dashView').hidden) { loadStats(); loadLeads(); }
+  });
   $('exportBtn').addEventListener('click', exportCsv);
   $('prevBtn').addEventListener('click', function () { if (state.page > 1) { state.page--; loadLeads(); } });
   $('nextBtn').addEventListener('click', function () { state.page++; loadLeads(); });

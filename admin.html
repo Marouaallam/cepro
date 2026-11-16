@@ -42,42 +42,21 @@
         <span>Demandes reçues</span>
       </div>
       <div class="topbar__actions">
-        <button type="button" class="btn" id="refreshBtn">Actualiser</button>
-        <button type="button" class="btn" id="exportBtn">Exporter CSV</button>
+        <button type="button" class="btn" id="exportBtn">Exporter</button>
         <button type="button" class="btn btn--ghost" id="logoutBtn">Déconnexion</button>
       </div>
     </header>
 
     <main class="dash">
-      <section class="stats" aria-label="Statistiques">
-        <div class="stat"><span class="stat__value" id="statTotal">–</span><span class="stat__label">Total</span></div>
-        <div class="stat"><span class="stat__value" id="statToday">–</span><span class="stat__label">Aujourd'hui</span></div>
-        <div class="stat"><span class="stat__value" id="statWeek">–</span><span class="stat__label">7 derniers jours</span></div>
-        <div class="stat"><span class="stat__value" id="statPrestige">–</span><span class="stat__label">Prestige</span></div>
-        <div class="stat"><span class="stat__value" id="statSignature">–</span><span class="stat__label">Signature</span></div>
-      </section>
+      <p class="summary" id="summary" aria-live="polite"></p>
 
       <form id="filters" class="filters" autocomplete="off">
-        <input type="search" name="q" placeholder="Nom, prénom ou téléphone" aria-label="Recherche">
+        <input type="search" name="q" placeholder="Rechercher un nom ou un téléphone" aria-label="Recherche">
         <select name="residence" aria-label="Résidence">
           <option value="">Toutes les résidences</option>
           <option value="prestige">Prestige</option>
           <option value="signature">Signature</option>
         </select>
-        <select name="apartment_type" aria-label="Appartement">
-          <option value="">Tous les types</option>
-          <option>F2</option><option>F3</option><option>F4</option>
-          <option>F5 Duplex</option><option>F5 Attique</option>
-        </select>
-        <select name="contact_time" aria-label="Créneau">
-          <option value="">Tous les créneaux</option>
-          <option value="morning">Matin (09–12h)</option>
-          <option value="afternoon">Après-midi (12–16h)</option>
-          <option value="evening">Fin de journée (16–18h)</option>
-        </select>
-        <label class="filters__date">Du <input type="date" name="from"></label>
-        <label class="filters__date">Au <input type="date" name="to"></label>
-        <button type="reset" class="btn btn--ghost">Effacer</button>
       </form>
 
       <p id="dashError" class="error error--block" role="alert" hidden></p>
@@ -89,11 +68,8 @@
               <th>Date</th>
               <th>Nom</th>
               <th>Téléphone</th>
-              <th>Résidence</th>
-              <th>Appart.</th>
-              <th>Créneau</th>
-              <th>Langue</th>
-              <th>Source</th>
+              <th>Logement</th>
+              <th>À appeler</th>
             </tr>
           </thead>
           <tbody id="rows"></tbody>
