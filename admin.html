@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>CEPRO — Demandes reçues</title>
+  <link rel="icon" type="image/png" href="assets/cepro-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- Login -->
+  <main id="loginView" class="login" hidden>
+    <form id="loginForm" class="login__card" novalidate>
+      <img src="assets/cepro-logo.png" alt="CEPRO Immobilier" width="80" height="84">
+      <h1>Espace administrateur</h1>
+      <label for="password">Mot de passe</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+      <p id="loginError" class="error" role="alert" hidden></p>
+      <button type="submit" class="btn btn--primary" id="loginBtn">Se connecter</button>
+    </form>
+  </main>
+
+  <!-- Configuration error -->
+  <main id="configView" class="login" hidden>
+    <div class="login__card">
+      <h1>Configuration incomplète</h1>
+      <p>Variables d'environnement manquantes sur Vercel :</p>
+      <ul id="missingVars" class="missing"></ul>
+    </div>
+  </main>
+
+  <!-- Dashboard -->
+  <div id="dashView" hidden>
+    <header class="topbar">
+      <div class="topbar__brand">
+        <img src="assets/cepro-logo.png" alt="" width="34" height="36">
+        <span>Demandes reçues</span>
+      </div>
+      <div class="topbar__actions">
+        <button type="button" class="btn" id="refreshBtn">Actualiser</button>
+        <button type="button" class="btn" id="exportBtn">Exporter CSV</button>
+        <button type="button" class="btn btn--ghost" id="logoutBtn">Déconnexion</button>
+      </div>
+    </header>
+
+    <main class="dash">
+      <section class="stats" aria-label="Statistiques">
+        <div class="stat"><span class="stat__value" id="statTotal">–</span><span class="stat__label">Total</span></div>
+        <div class="stat"><span class="stat__value" id="statToday">–</span><span class="stat__label">Aujourd'hui</span></div>
+        <div class="stat"><span class="stat__value" id="statWeek">–</span><span class="stat__label">7 derniers jours</span></div>
+        <div class="stat"><span class="stat__value" id="statPrestige">–</span><span class="stat__label">Prestige</span></div>
+        <div class="stat"><span class="stat__value" id="statSignature">–</span><span class="stat__label">Signature</span></div>
+      </section>
+
+      <form id="filters" class="filters" autocomplete="off">
+        <input type="search" name="q" placeholder="Nom, prénom ou téléphone" aria-label="Recherche">
+        <select name="residence" aria-label="Résidence">
+          <option value="">Toutes les résidences</option>
+          <option value="prestige">Prestige</option>
+          <option value="signature">Signature</option>
+        </select>
+        <select name="apartment_type" aria-label="Appartement">
+          <option value="">Tous les types</option>
+          <option>F2</option><option>F3</option><option>F4</option>
+          <option>F5 Duplex</option><option>F5 Attique</option>
+        </select>
+        <select name="contact_time" aria-label="Créneau">
+          <option value="">Tous les créneaux</option>
+          <option value="morning">Matin (09–12h)</option>
+          <option value="afternoon">Après-midi (12–16h)</option>
+          <option value="evening">Fin de journée (16–18h)</option>
+        </select>
+        <label class="filters__date">Du <input type="date" name="from"></label>
+        <label class="filters__date">Au <input type="date" name="to"></label>
+        <button type="reset" class="btn btn--ghost">Effacer</button>
+      </form>
+
+      <p id="dashError" class="error error--block" role="alert" hidden></p>
+
+      <div class="table-wrap">
+        <table class="leads">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Nom</th>
+              <th>Téléphone</th>
+              <th>Résidence</th>
+              <th>Appart.</th>
+              <th>Créneau</th>
+              <th>Langue</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <p id="empty" class="empty" hidden>Aucune demande ne correspond à ces critères.</p>
+      </div>
+
+      <nav class="pager" aria-label="Pagination">
+        <button type="button" class="btn" id="prevBtn">← Précédent</button>
+        <span id="pageInfo"></span>
+        <button type="button" class="btn" id="nextBtn">Suivant →</button>
+      </nav>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

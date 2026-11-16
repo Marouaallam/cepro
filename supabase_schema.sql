@@ -32,14 +32,12 @@ FOR INSERT
 TO anon, authenticated
 WITH CHECK (true);
 
--- 4. Policy: Disallow anonymous users from reading/listing leads
--- Leads can only be read by authenticated dashboard users (admin/agents).
+-- 4. No SELECT policy on purpose: nobody can read leads with the publishable key.
+-- The admin panel (/admin) reads them server-side through Vercel functions using
+-- the Supabase SECRET key, which bypasses RLS and never reaches the browser.
+-- (A previous version allowed any "authenticated" user to read — anyone able to
+-- sign up to the project could then list all leads. It is removed here.)
 DROP POLICY IF EXISTS "Allow authenticated read only" ON public.leads;
-CREATE POLICY "Allow authenticated read only"
-ON public.leads
-FOR SELECT
-TO authenticated
-USING (true);
 
 -- Useful index for querying by residence or submission date
 CREATE INDEX IF NOT EXISTS idx_leads_submitted_at ON public.leads (submitted_at DESC);

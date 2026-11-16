@@ -155,7 +155,40 @@ The project is fully static — upload the folder as-is (keep `assets/` next to 
 
 ---
 
-## 6. Customization quick reference
+## 6. Admin panel (`/admin`)
+
+A small password-protected page to read the received leads: counters (total / today / 7 days /
+per residence), search by name or phone, filters (residence, apartment, time slot, date range),
+pagination and CSV export (Excel-friendly, `;` separator).
+
+```
+admin.html, admin.css, admin.js      → the page (served at /admin on Vercel)
+api/admin/login.js | logout.js       → password check, signed HttpOnly session cookie (12 h)
+api/admin/session.js                 → "am I logged in?"
+api/admin/leads.js | stats.js        → read leads from Supabase with the secret key
+api/_lib/admin.js                    → shared helpers (not a route)
+vercel.json                          → clean URLs + noindex / no-cache headers on /admin
+```
+
+The browser never sees the Supabase secret key: the page only calls `/api/admin/*`, which
+check the session cookie and then query Supabase server-side.
+
+**Vercel environment variables** (Project → Settings → Environment Variables, then redeploy):
+
+| Variable | Value |
+|---|---|
+| `SUPABASE_URL` | `https://<project-ref>.supabase.co` |
+| `SUPABASE_SECRET_KEY` | Supabase → Project Settings → API Keys → **Secret key** (`sb_secret_…`) or legacy `service_role` |
+| `ADMIN_PASSWORD` | the password the team will use |
+| `ADMIN_SESSION_SECRET` | 32+ random characters (`node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`) |
+| `SUPABASE_TABLE` | optional, defaults to `leads` |
+
+If a variable is missing, `/admin` lists which ones. The API functions need the Vercel runtime —
+test locally with `npx vercel dev` (a plain static server will not run `/api`).
+
+---
+
+## 7. Customization quick reference
 
 - **Texts / translations:** `I18N.fr` and `I18N.ar` in `script.js`.
 - **Apartment types per residence:** `RESIDENCES` in `script.js`.
