@@ -39,7 +39,7 @@
     // META PIXEL INTEGRATION REQUIRED:
     // Replace with your numeric Pixel ID from Meta Events Manager.
     // While this placeholder is present, the Pixel is not loaded at all.
-    META_PIXEL_ID: 'META_PIXEL_ID_PLACEHOLDER',
+    META_PIXEL_ID: '2974627666215413',
 
     // Replace with the URL of CEPRO's actual privacy policy.
     // While this placeholder is present, the link stays hidden.
@@ -678,6 +678,17 @@
 
   // Called ONLY after a successful (2xx) backend response.
   function trackLead(payload) {
+    // Server-side Conversions API (api/meta-lead.js). Runs even when an ad
+    // blocker stops the Pixel. Fire-and-forget: never delays the success screen.
+    try {
+      fetch('/api/meta-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event_id: payload.event_id }),
+        keepalive: true
+      }).catch(function () {});
+    } catch (e) { /* fetch unavailable */ }
+
     if (!state.pixelReady || typeof window.fbq !== 'function') return;
     window.fbq('track', 'Lead', {
       content_name: payload.residence,
