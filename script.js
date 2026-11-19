@@ -43,7 +43,7 @@
 
     // Replace with the URL of CEPRO's actual privacy policy.
     // While this placeholder is present, the link stays hidden.
-    PRIVACY_POLICY_URL: 'INSERT_ACTUAL_CEPRO_PRIVACY_POLICY_URL',
+    PRIVACY_POLICY_URL: '/privacy',
 
     // Network timeout for the submission request (milliseconds).
     REQUEST_TIMEOUT_MS: 15000,

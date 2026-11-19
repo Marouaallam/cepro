@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Politique de confidentialité — CEPRO Immobilier</title>
+  <meta name="description" content="Politique de confidentialité de CEPRO Immobilier : utilisation et protection des informations recueillies.">
+  <meta name="theme-color" content="#f3f1ed">
+  <link rel="icon" type="image/png" href="assets/cepro-logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #141414;
+      --text: #2f2d2a;
+      --muted: #75716a;
+      --line: #e5e1da;
+      --bg: #f3f1ed;
+      --surface: #ffffff;
+      --bronze: #8a7258;
+      --radius-lg: 18px;
+      --shadow-card: 0 1px 2px rgba(20, 20, 20, .04), 0 12px 40px -12px rgba(20, 20, 20, .12);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Jost", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    .shell { max-width: 760px; margin: 0 auto; padding: 32px 16px 48px; }
+    .masthead { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+    .masthead img { width: 72px; height: auto; display: block; }
+    .back { color: var(--bronze); text-decoration: none; font-weight: 500; }
+    .back:hover, .back:focus-visible { text-decoration: underline; }
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 32px 24px;
+    }
+    @media (min-width: 640px) { .card { padding: 44px 48px; } }
+    h1 { color: var(--ink); font-weight: 500; font-size: clamp(26px, 5vw, 34px); line-height: 1.2; margin: 0 0 8px; }
+    .updated { color: var(--muted); font-size: 14px; margin: 0 0 32px; }
+    h2 { color: var(--ink); font-weight: 500; font-size: 20px; margin: 32px 0 10px; padding-top: 24px; border-top: 1px solid var(--line); }
+    h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+    p { margin: 0 0 12px; }
+    ul { margin: 0 0 12px; padding-left: 22px; }
+    li { margin-bottom: 6px; }
+    li::marker { color: var(--bronze); }
+    footer { color: var(--muted); font-size: 14px; text-align: center; margin-top: 28px; }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <a href="/"><img src="assets/cepro-logo.png" width="205" height="216" alt="CEPRO Immobilier"></a>
+      <a class="back" href="/">← Retour au formulaire</a>
+    </header>
+
+    <article class="card">
+      <h1>Politique de confidentialité</h1>
+      <p class="updated">CEPRO Immobilier</p>
+
+      <h2>Utilisation des informations recueillies</h2>
+      <p>Toutes les informations que nous recueillons auprès de vous (nom, prénom, numéro de téléphone, wilaya, caractéristiques de votre projet) peuvent être utilisées pour&nbsp;:</p>
+      <ul>
+        <li>Personnaliser votre expérience et répondre à vos besoins individuels</li>
+        <li>Fournir un contenu publicitaire personnalisé</li>
+        <li>Améliorer notre service</li>
+        <li>Améliorer le service client et vos besoins de prise en charge</li>
+        <li>Vous contacter par e-mail, par téléphone ou WhatsApp dans le cadre de votre demande</li>
+      </ul>
+
+      <h2>Propriété et non-divulgation des données</h2>
+      <p>Nous sommes les seuls propriétaires des informations recueillies. Vos informations personnelles ne seront pas vendues, échangées, transférées, ou données à une autre société pour n’importe quelle raison, sans votre consentement, en dehors de ce qui est strictement nécessaire pour répondre à une demande et / ou une transaction, comme par exemple pour l’étude technique d’un chantier ou pour expédier une commande.</p>
+
+      <h2>Prestataires techniques et mesure publicitaire</h2>
+      <p>Pour faire fonctionner ce site, nous faisons appel à des prestataires techniques&nbsp;:</p>
+      <ul>
+        <li><strong>Hébergement et stockage</strong>&nbsp;: les informations du formulaire sont enregistrées de manière sécurisée chez nos prestataires d’hébergement (Vercel, Supabase).</li>
+        <li><strong>Mesure publicitaire (Meta)</strong>&nbsp;: ce site utilise le pixel Meta et l’API Conversions de Meta (Facebook, Instagram) pour mesurer l’efficacité de nos publicités. Lors de l’envoi d’une demande, une version codée et non lisible (hachée) de votre nom et de votre numéro de téléphone, ainsi que des données techniques (adresse IP, type de navigateur, cookies Meta), sont transmises à Meta. Ces données ne sont jamais vendues.</li>
+      </ul>
+    </article>
+
+    <footer>© <span id="year"></span> CEPRO Immobilier</footer>
+  </main>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
